@@ -16,24 +16,19 @@ int main()
 
 long long int ipow(long long int a, unsigned int n, unsigned int * depth)
 {
-    static unsigned int cnt = 0;
-    cnt++;
-    *depth = cnt;
-
-    if (!n)
-        return 1;
-    if (n == 1)
-        return a;
+    *depth = 1;
+    if (!n) return 1;
+    if (n == 1) return a;
 
     long long int result;
-
     if (n % 2)
-        result =  a * ipow(a, n - 1, depth);
+        result =  a * ipow(a, n-1, depth);
     else
     {
-        result = ipow(a, n /2, depth);
+        result = ipow(a, n/2, depth);
         result *= result;
     }
 
+    (*depth)++;
     return result;
 }
